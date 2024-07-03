@@ -1,0 +1,49 @@
+# Exclude .env files for security
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment directories
+venv/
+env/
+
+# Ignore local development files
+*.sqlite3
+*.log
+*.pid
+*.swp
+*.swo
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Ignore test and development folders
+tests/
+docs/
+*.md
+
+# Ignore git files
+.git
+.gitignore
+
+# Ignore Docker files
+Dockerfile
+
+# Node modules
+node_modules/
+
+# Ignore frontend build files
+frontend/build/
+frontend/dist/
+
+# Ignore editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
