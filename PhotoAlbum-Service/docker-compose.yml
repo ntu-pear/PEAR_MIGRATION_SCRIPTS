@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  app:
+    image: node:14
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: sh -c "npm install && npm test"
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URI=mongodb://db:27017/FYP
+    depends_on:
+      - db
+
+  db:
+    image: mongo:4.2
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: FYP
