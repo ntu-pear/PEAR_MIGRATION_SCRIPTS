@@ -4,7 +4,7 @@ CREATE TABLE LIST_TABLE(
 	active nvarchar(1) default 'Y' NOT NULL,
 	type nvarchar(255)  NOT NULL ,
 	value nvarchar(255) NOT NULL,
-	listOrder bigInt,
+
 	createdDate datetime2  NOT NULL,
 	modifiedDate datetime2  NOT NULL,
 	createdById numeric(19) NOT NULL,

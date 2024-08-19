@@ -1,8 +1,8 @@
 CREATE TABLE SCENARIO(
 	id numeric(19) IDENTITY(1,1) PRIMARY KEY,
 	active nvarchar(1) default 'Y' NOT NULL, 
-	requestorRole numeric(19) FOREIGN KEY REFERENCES TABLE_USER(id)  NOT NULL,
-	requesteeRole  numeric(19) FOREIGN KEY REFERENCES TABLE_USER(id)  NOT NULL,
+	requestorRole numeric(19) NOT NULL,
+	requesteeRole  numeric(19)   NOT NULL,
 	tableAffected nvarchar(255),
 
 	createdDate datetime2  NOT NULL,
@@ -16,11 +16,11 @@ CREATE TABLE SCENARIO(
 CREATE TABLE SCENARIO_PROCEDURE(
 	id numeric(19) IDENTITY(1,1) PRIMARY KEY,
 	active nvarchar(1) default 'Y' NOT NULL, 
-	stepNumber
-	isApprovalRequest
-	nextStep
-	notificationRecieverRole
-	notificationMessage,
+	stepNumber bigint,
+	isApprovalRequest  nvarchar(1) ,
+	nextStep nvarchar(255),
+	notificationRecieverRole nvarchar(255), 
+	notificationMessage nvarchar(255), 
 
 	createdDate datetime2  NOT NULL,
 	modifiedDate datetime2 DEFAULT GETDATE() NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE APPROVAL_REQUEST(
 	scenarioId numeric(19)  NOT NULL,
 	stepNumber bigInt,
 	modificationEnabled nvarchar(1),
-	rejectReason nvarchar(255)
+	rejectReason nvarchar(255),
 
 	createdDate datetime2  NOT NULL,
 	modifiedDate datetime2 DEFAULT GETDATE() NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE PROBLEM_LOG(
 	userId numeric(19),
 	patientId numeric(19),
 	problemLogListId numeric(19),
-	problemLogRemarks nvarchar(255)
+	problemLogRemarks nvarchar(255),
 	
 	createdDate datetime2  NOT NULL,
 	modifiedDate datetime2 DEFAULT GETDATE() NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE storedNotification(
 	active nvarchar(1) default 'Y' NOT NULL, 
 	notificationType nvarchar(255),
 	serializedNotification nvarchar(255),
-	senderUserId numeric(19) -- if this isnt a user ID RIP
+	senderUserId numeric(19), -- if this isnt a user ID RIP
 
 	createdDate datetime2  NOT NULL,
 	modifiedDate datetime2 DEFAULT GETDATE() NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE NOTIFICATION_SCENARIO(
 	active nvarchar(1) default 'Y' NOT NULL, 
 	scenarioId numeric(19) FOREIGN KEY REFERENCES SCENARIO(id),
 	parentScenarioId numeric(19),
-	scenarioName nvarchar(255)
+	scenarioName nvarchar(255),
 	initiatorRole nvarchar(255),
 	notificationType nvarchar(255),
 	messageTemplate nvarchar(255),
